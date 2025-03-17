@@ -88,7 +88,7 @@ class HocPhanController extends Controller
             ->where('chitietdangky.MaHP', $maHP)
             ->delete();
 
-        return redirect()->route('hocphan.index')->with('success', 'Xóa học phần thành công');
+        return redirect()->route('hocphan.dadangky')->with('success', 'Xóa học phần thành công');
     }
 
     public function xoaToanBoDangKy(Request $request)
@@ -99,6 +99,6 @@ class HocPhanController extends Controller
             ->where('dangky.MaSV', $maSV)
             ->delete();
 
-        return redirect()->route('hocphan.index')->with('success', 'Xóa tất cả học phần thành công');
+        return redirect()->route('hocphan.dadangky')->with('success', 'Xóa tất cả học phần thành công');
     }
 }
