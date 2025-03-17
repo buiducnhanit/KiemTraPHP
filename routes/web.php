@@ -30,5 +30,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/hocphan', [HocPhanController::class, 'index'])->name('hocphan.index');
 Route::post('/hocphan/dangky', [HocPhanController::class, 'dangKyHocPhan'])->name('hocphan.dangky');
 Route::get('/hocphan/dadangky', [HocPhanController::class, 'hocPhanDaDangKy'])->name('hocphan.dadangky');
-Route::get('/hocphan/dangky/xoa/{maHP}', [HocPhanController::class, 'xoaHocPhanDangKy'])->name('hocphan.dangky.xoa');
-Route::get('/hocphan/dangky/xoa-tat-ca', [HocPhanController::class, 'xoaToanBoDangKy'])->name('hocphan.dangky.xoa_tat_ca');
+Route::delete('/hocphan/dangky/xoa/{maHP}', [HocPhanController::class, 'xoaHocPhanDangKy'])->name('hocphan.dangky.xoa');
+Route::delete('/hocphan/dangky/xoa-tat-ca', [HocPhanController::class, 'xoaToanBoDangKy'])->name('hocphan.dangky.xoa_tat_ca');

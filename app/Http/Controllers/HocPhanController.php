@@ -83,28 +83,22 @@ class HocPhanController extends Controller
     {
         $maSV = $request->cookie('sinhvien');
 
-        $dangKy = DangKy::where('MaSV', $maSV)->first();
+        ChiTietDangKy::join('dangky', 'chitietdangky.MaDK', '=', 'dangky.MaDK')
+            ->where('dangky.MaSV', $maSV)
+            ->where('chitietdangky.MaHP', $maHP)
+            ->delete();
 
-        if ($dangKy) {
-            ChiTietDangKy::where('MaDK', $dangKy->MaDK)
-                ->where('MaHP', $maHP)
-                ->delete();
-        }
-
-        return redirect()->route('hocphan.dangky')->with('success', 'Xóa học phần thành công.');
+        return redirect()->route('hocphan.index')->with('success', 'Xóa học phần thành công');
     }
 
     public function xoaToanBoDangKy(Request $request)
     {
         $maSV = $request->cookie('sinhvien');
 
-        $dangKy = DangKy::where('MaSV', $maSV)->first();
+        ChiTietDangKy::join('dangky', 'chitietdangky.MaDK', '=', 'dangky.MaDK')
+            ->where('dangky.MaSV', $maSV)
+            ->delete();
 
-        if ($dangKy) {
-            ChiTietDangKy::where('MaDK', $dangKy->MaDK)->delete();
-        }
-
-        return redirect()->route('hocphan.dangky')->with('success', 'Xóa toàn bộ đăng ký thành công.');
+        return redirect()->route('hocphan.index')->with('success', 'Xóa tất cả học phần thành công');
     }
-
 }

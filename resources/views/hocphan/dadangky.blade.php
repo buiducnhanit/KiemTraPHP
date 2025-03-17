@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 <h2>Học Phần Đã Đăng Ký</h2>
@@ -20,11 +20,24 @@
         <td>{{ $hp->TenHP }}</td>
         <td>{{ $hp->SoTinChi }}</td>
         <td>
-            <a href="{{ route('hocphan.dangky.xoa', $hp->MaHP) }}">Xóa</a>
+            <form action="{{ route('hocphan.dangky.xoa', $hp->MaHP) }}" method="POST" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa học phần này không?')">
+                    Xóa
+                </button>
+            </form>
         </td>
     </tr>
     @endforeach
 </table>
 
-<a href="{{ route('hocphan.dangky.xoa_tat_ca') }}">Xóa Tất Cả</a>
+<form action="{{ route('hocphan.dangky.xoa_tat_ca') }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa tất cả học phần đã đăng ký không?')">
+        Xóa Tất Cả
+    </button>
+</form>
+
 @endsection
